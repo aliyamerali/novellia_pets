@@ -12,3 +12,6 @@ AllCops:
     - 'Gemfile.lock'
     - 'Rakefile'
     - 'config.ru'
+
+Documentation:
+  Enabled: false
