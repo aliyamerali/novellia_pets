@@ -57,6 +57,7 @@ group :test do
   gem 'capybara'
   gem 'simplecov'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_bot'
 end
 
 group :development do
