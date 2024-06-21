@@ -17,18 +17,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_21_183909) do
   create_table "allergy_reactions", force: :cascade do |t|
     t.integer "reaction", null: false
     t.integer "severity", null: false
-    t.bigint "allergy_records_id", null: false
+    t.bigint "allergy_record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["allergy_records_id"], name: "index_allergy_reactions_on_allergy_records_id"
+    t.index ["allergy_record_id"], name: "index_allergy_reactions_on_allergy_record_id"
   end
 
   create_table "allergy_records", force: :cascade do |t|
     t.string "name"
-    t.bigint "pets_id", null: false
+    t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pets_id"], name: "index_allergy_records_on_pets_id"
+    t.index ["pet_id"], name: "index_allergy_records_on_pet_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -44,13 +44,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_21_183909) do
   create_table "vaccine_records", force: :cascade do |t|
     t.string "name", null: false
     t.date "date_administered", null: false
-    t.bigint "pets_id", null: false
+    t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pets_id"], name: "index_vaccine_records_on_pets_id"
+    t.index ["pet_id"], name: "index_vaccine_records_on_pet_id"
   end
 
-  add_foreign_key "allergy_reactions", "allergy_records", column: "allergy_records_id"
-  add_foreign_key "allergy_records", "pets", column: "pets_id"
-  add_foreign_key "vaccine_records", "pets", column: "pets_id"
+  add_foreign_key "allergy_reactions", "allergy_records"
+  add_foreign_key "allergy_records", "pets"
+  add_foreign_key "vaccine_records", "pets"
 end
