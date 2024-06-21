@@ -1,5 +1,7 @@
-class VaccineRecord < MedicalRecord
-    validates :date_administered, presence: true
+# frozen_string_literal: true
 
-    belongs_to :pet
+class VaccineRecord < MedicalRecord
+  validates :date_administered, presence: true
+
+  belongs_to :pet
 end

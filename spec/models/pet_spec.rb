@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Pet do
-  describe "validations" do
+  describe 'validations' do
     subject { FactoryBot.create(:pet) } # use FactoryBot to create a pet
 
     it { should validate_presence_of(:name) }
