@@ -16,12 +16,6 @@ class AllergyRecordsController < ApplicationController
     @allergy_record = AllergyRecord.new(pet_id: @pet.id)
   end
 
-  # def show
-  #   @allergy_record = AllergyRecord.find(params[:id])
-  #   @allergy_reactions = AllergyReaction.find_by(allergy_record_id: params[:id])
-  #   @pet = Pet.find(@allergy_record.pet_id)
-  # end
-
   private
 
   def allergy_record_params

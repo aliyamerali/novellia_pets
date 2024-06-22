@@ -5,7 +5,7 @@ class VaccineRecordsController < ApplicationController
     @vaccine_record = VaccineRecord.new(vaccine_record_params)
     @pet = Pet.find(@vaccine_record.pet_id)
     if @vaccine_record.save
-      redirect_to root_path
+      redirect_to pets
     else
       render :new, status: :unprocessable_entity
     end

@@ -4,15 +4,18 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     if @pet.save
-      redirect_to root_path
+      redirect_to pets
     else
-      # binding.pry
       render :new, status: :unprocessable_entity
     end
   end
 
   def index
-    @pets = Pet.all.order(:name)
+    if params["user_type"] == "owner"
+      @pets = Pet.all.order(:name)
+    else
+      redirect_to root_path
+    end
   end
 
   def new
@@ -27,6 +30,6 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :species, :owner_first, :owner_last, :date_of_birth)
+    params.require(:pet).permit(:name, :species, :owner_first, :owner_last, :date_of_birth, :user_type)
   end
 end
