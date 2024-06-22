@@ -1,31 +1,32 @@
+# frozen_string_literal: true
+
 class PetsController < ApplicationController
-    def create
-        @pet = Pet.new(pet_params)
-        if @pet.save
-            redirect_to root_path
-        else
-            # binding.pry
-            render :new, status: :unprocessable_entity
-        end
+  def create
+    @pet = Pet.new(pet_params)
+    if @pet.save
+      redirect_to root_path
+    else
+      # binding.pry
+      render :new, status: :unprocessable_entity
     end
-    
-    def index
-        @pets = Pet.all.order(:name)
-    end
+  end
 
-    def new
-        @pet = Pet.new
-    end
-    
-    def show
-        pet = Pet.find(params[:id])
-        render json: pet
-    end
+  def index
+    @pets = Pet.all.order(:name)
+  end
 
-    private
+  def new
+    @pet = Pet.new
+  end
 
-    def pet_params
-        params.require(:pet).permit(:name, :species, :owner_first, :owner_last, :date_of_birth)
-    end
+  def show
+    pet = Pet.find(params[:id])
+    render json: pet
+  end
+
+  private
+
+  def pet_params
+    params.require(:pet).permit(:name, :species, :owner_first, :owner_last, :date_of_birth)
+  end
 end
-  
