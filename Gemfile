@@ -58,6 +58,7 @@ group :test do
   gem 'simplecov'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_bot'
+  gem 'faker'
 end
 
 group :development do

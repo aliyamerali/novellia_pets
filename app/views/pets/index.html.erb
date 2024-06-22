@@ -19,10 +19,10 @@
 </style>
 
 <div class="right-align">
-  <%= button_to 'Add A Pet', 'pets/new', method: :get %>
+  <%= button_to 'Add a Pet', 'pets/new', method: :get %>
 </div>
 <br>
-<table>
+<table id="pets-list" >
     <thead>
         <tr>
         <th>Pet Name</th>
@@ -34,8 +34,8 @@
     </thead>
     <tbody>
         <% @pets.each do |pet| %>
-        <tr>
-            <td><%= link_to "#{pet.name}", pet_path(pet.id) %></td>
+        <tr id="pet-id-<%=pet.id%>">
+            <td><%= pet.name %></td>
             <td><%= pet.species %></td>
             <td><%= pet.owner_first %> <%= pet.owner_last %></td>
             <td><%= pet.date_of_birth %></td>
@@ -67,7 +67,7 @@
                 </table>
                 <br>
                 <div class="right-align">
-                    <%= button_to 'Add Allergy Record', 'allergy_record/new', method: :get %>
+                    <%= button_to 'Add Allergy Record', new_allergy_record_path(pet.id), method: :get %>
                 </div>
                 <br> <strong>Allergies:</strong> <br>
                 <table>
@@ -91,6 +91,7 @@
                                         <%= allergy_reaction.reaction %> -
                                         <%= allergy_reaction.severity %> <br> 
                                     <% end %>
+                                    <%= button_to 'Add Reaction', new_allergy_reaction_path(allergy_record.id), method: :get %>
                                 </td>
                             </tr>
                             <% end %>
