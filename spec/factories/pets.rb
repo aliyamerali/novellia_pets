@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-species_options = ['bird', 'cat', 'chicken', 'dog', 'ferret', 'fish', 'guinea_pig', 'hampster', 'rabbit', 'reptile']
+species_options = %w[bird cat chicken dog ferret fish guinea_pig hampster rabbit reptile]
 
 FactoryBot.define do
   factory :pet do

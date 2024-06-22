@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'New pet page' do
-
   before :each do
     visit 'pets/new'
   end
@@ -15,7 +16,7 @@ RSpec.describe 'New pet page' do
     expect(page).to have_select('pet_date_of_birth_1i') # Year select box
     expect(page).to have_select('pet_date_of_birth_2i') # Month select box
     expect(page).to have_select('pet_date_of_birth_3i') # Day select box
-    
+
     expect(page).to have_button('Add Pet')
   end
 
@@ -34,9 +35,9 @@ RSpec.describe 'New pet page' do
     click_button('Add Pet')
 
     expect(page).to have_current_path('/')
-    expect(page).to have_content("Rolf")
-    expect(page).to have_content("Duke Ellington")
-    expect(page).to have_content("No vaccine records found for this pet.")
-    expect(page).to have_content("No allergy records found for this pet.")
+    expect(page).to have_content('Rolf')
+    expect(page).to have_content('Duke Ellington')
+    expect(page).to have_content('No vaccine records found for this pet.')
+    expect(page).to have_content('No allergy records found for this pet.')
   end
 end

@@ -7,7 +7,7 @@ class AllergyReaction < ApplicationRecord
     moderate: 1,
     severe: 2
   }
-  
+
   enum reaction: {
     facial_swelling: 0,
     hives: 1,

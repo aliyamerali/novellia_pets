@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'New vaccine_record page' do
-
   before :each do
     @pet = FactoryBot.create(:pet)
 
-    visit 'vaccine_records/new.' + @pet.id.to_s
+    visit "vaccine_records/new.#{@pet.id}"
   end
 
   it 'has a form to create a new vaccine_record' do
@@ -14,7 +15,7 @@ RSpec.describe 'New vaccine_record page' do
     expect(page).to have_select('vaccine_record_date_administered_1i') # Year select box
     expect(page).to have_select('vaccine_record_date_administered_2i') # Month select box
     expect(page).to have_select('vaccine_record_date_administered_3i') # Day select box
-    
+
     expect(page).to have_button('Add Vaccine Record')
   end
 
@@ -32,8 +33,8 @@ RSpec.describe 'New vaccine_record page' do
 
     expect(page).to have_current_path('/')
     within("#pet-id-#{@pet.id}") do
-      expect(page).to have_content("Rabies")
-      expect(page).to_not have_content("No vaccine records found for this pet.")
+      expect(page).to have_content('Rabies')
+      expect(page).to_not have_content('No vaccine records found for this pet.')
     end
   end
 end

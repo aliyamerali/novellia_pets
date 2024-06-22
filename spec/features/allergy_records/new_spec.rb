@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'New allergy_record page' do
-
   before :each do
     @pet = FactoryBot.create(:pet)
 
-    visit 'allergy_records/new.' + @pet.id.to_s
+    visit "allergy_records/new.#{@pet.id}"
   end
 
   it 'has a form to create a new allergy_record' do
     expect(page).to have_content("New Allergy Record for #{@pet.name}")
     expect(page).to have_field('Allergy Name')
-    
+
     expect(page).to have_button('Add Allergy Record')
   end
 
@@ -27,7 +28,7 @@ RSpec.describe 'New allergy_record page' do
     fill_in 'Allergy Name', with: 'Pollen'
     click_button('Add Allergy Record')
 
-    expect(page).to have_current_path(/allergy_reactions\/new/, url: true)
+    expect(page).to have_current_path(%r{allergy_reactions/new}, url: true)
     expect(page).to have_content("Pollen Allergy Record for #{@pet.name}")
     expect(page).to have_select('Reaction')
     expect(page).to have_select('Severity')
