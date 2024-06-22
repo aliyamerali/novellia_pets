@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'pets#index'
 
-  resources :pets, only: [:create, :index, :new, :show]
+
+  resources :pets, only: [:create, :index, :new]
   resources :allergy_records, only: [:create, :new]
+  resources :allergy_reactions, only: [:create, :new]
   resources :vaccine_records, only: [:create, :new]
 end

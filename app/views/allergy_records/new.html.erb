@@ -1,0 +1,23 @@
+<%= form_for @allergy_record do |form| %>
+    <% if @allergy_record&.errors&.any? %>
+        <div id="error_explanation"  style="color: red;">
+            <h4><%= pluralize(@allergy_record.errors.count, "error") %> prohibited this allergy record from being saved:</h4>
+
+            <ul>
+            <% @allergy_record.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+            <br><br>
+        </div>
+    <% end %>
+    <h3>New Allergy Record for <%= @pet&.name %> </h3>
+    <%= form.label :name, 'Allergy Name:' %>
+    <%= form.text_field :name %><br>
+    
+    <%= form.hidden_field :pet_id, value: @pet.id %>
+
+    <div class="actions">
+    <%= form.submit 'Add Allergy Record'%>
+    </div>
+<% end %>

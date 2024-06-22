@@ -1,0 +1,51 @@
+<style>
+  .right-align {
+    text-align: right;
+  }
+</style>
+
+<div class="right-align">
+  <%= button_to 'All Pets', '/', method: :get %>
+</div>
+
+<h1><%=  @allergy_record.name %> Allergy Record for <%= @pet.name %></h1>
+
+<h2> Reactions </h2>
+<% if @allergy_record.allergy_reactions.any? %>
+    <ul>
+        <% @allergy_record.allergy_reactions.each do |reaction| %>
+            <li><%= reaction.reaction %> - <%= reaction.severity %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @allergy_reaction do |form| %>
+    <% if @allergy_reaction&.errors&.any? %>
+        <div id="error_explanation"  style="color: red;">
+            <h4><%= pluralize(@allergy_reaction.errors.count, "error") %> prohibited this allergy record from being saved:</h4>
+
+            <ul>
+            <% @allergy_reaction.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+            <br><br>
+        </div>
+    <% end %>
+    <h3>New Allergy Reaction for <%= @pet&.name %>'s <%= @allergy_record&.name %> Allergy</h3>
+        <div class="field">
+        <%= form.label :reaction %><br>
+        <%= form.select :reaction, AllergyReaction.reactions.keys.map { |s| [s.humanize, s] } %>
+        </div>
+
+        <div class="field">
+        <%= form.label :severity %><br>
+        <%= form.select :severity, AllergyReaction.severities.keys.map { |s| [s.humanize, s] } %>
+        </div>
+
+        <%= form.hidden_field :allergy_record_id, value: @allergy_record.id %>
+
+    <div class="actions">
+    <%= form.submit 'Add Allergy Reaction'%>
+    </div>
+<% end %>
