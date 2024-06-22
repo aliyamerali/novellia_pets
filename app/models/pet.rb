@@ -18,4 +18,8 @@ class Pet < ApplicationRecord
 
   has_many :vaccine_records, dependent: :destroy
   has_many :allergy_records, dependent: :destroy
+
+  def has_overdue_vaccines
+    VaccineRecord.where(pet_id: id).where('date_administered < ?', Date.today - 365).count.positive?
+  end
 end

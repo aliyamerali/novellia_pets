@@ -34,7 +34,7 @@
     </thead>
     <tbody>
         <% @pets.each do |pet| %>
-        <tr id="pet-id-<%=pet.id%>">
+        <tr id="pet-id-<%=pet.id%>" style="<%= 'background-color: #ffcccc;' if pet.has_overdue_vaccines %>">
             <td><%= pet.name %></td>
             <td><%= pet.species %></td>
             <td><%= pet.owner_first %> <%= pet.owner_last %></td>
