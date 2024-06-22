@@ -1,0 +1,26 @@
+<%= form_for @vaccine_record do |form| %>
+    <% if @vaccine_record&.errors&.any? %>
+        <div id="error_explanation"  style="color: red;">
+            <h4><%= pluralize(@vaccine_record.errors.count, "error") %> prohibited this vaccine record from being saved:</h4>
+
+            <ul>
+            <% @vaccine_record.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+            <br><br>
+        </div>
+    <% end %>
+    <h3>New Vaccine Record for <%= @pet&.name %> </h3>
+    <%= form.label :name, 'Vaccine Name:' %>
+    <%= form.text_field :name %><br>
+   
+    <%= form.label :date_administered, 'Date Administered:' %>
+    <%= form.date_select :date_administered %><br>
+   
+    <%= form.hidden_field :pet_id, value: @pet.id %>
+
+    <div class="actions">
+    <%= form.submit 'Add Vaccine Record'%>
+    </div>
+<% end %>

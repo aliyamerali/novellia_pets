@@ -1,0 +1,32 @@
+<%= form_for @pet do |form| %>
+    <% if @pet&.errors&.any? %>
+        <div id="error_explanation"  style="color: red;">
+            <h4><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h4>
+
+            <ul>
+            <% @pet.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+            <br><br>
+        </div>
+    <% end %>
+    <%= form.label :name, 'Pet Name:' %>
+    <%= form.text_field :name %><br>
+    <div class="field">
+    <%= form.label :species %><br>
+    <%= form.select :species, Pet.species.keys.map { |s| [s.humanize, s] } %>
+    </div>
+
+    <%= form.label :owner_first, 'Owner First Name:' %>
+    <%= form.text_field :owner_first %><br>
+    <%= form.label :owner_last, 'Owner Last Name:' %>
+    <%= form.text_field :owner_last %><br>
+
+    <%= form.label :date_of_birth, 'Pet\'s DOB:' %>
+    <%= form.date_select :date_of_birth %><br>
+
+    <div class="actions">
+    <%= form.submit 'Add Pet'%>
+    </div>
+<% end %>
