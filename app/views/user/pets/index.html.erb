@@ -1,4 +1,4 @@
-<h1> Novellia for Pets </h1>
+<h1> My Pets </h1>
 
 <style>
   table {
@@ -41,7 +41,7 @@
             <td><%= pet.date_of_birth %></td>
             <td> 
                 <div class="right-align">
-                  <%= button_to 'Add Vaccine Record', new_vaccine_record_path(pet.id), method: :get %>
+                  <%= link_to 'Add Vaccine Record', "/user/#{@user_id}/vaccine_records/new?pet_id=#{pet.id}", method: :get %>
                 </div>
                 <strong>Vaccines:</strong> <br>
                 <table>
@@ -67,7 +67,7 @@
                 </table>
                 <br>
                 <div class="right-align">
-                    <%= button_to 'Add Allergy Record', new_allergy_record_path(pet.id), method: :get %>
+                    <%= link_to 'Add Allergy Record', "/user/#{@user_id}/allergy_records/new?pet_id=#{pet.id}" , method: :get %>
                 </div>
                 <br> <strong>Allergies:</strong> <br>
                 <table>
@@ -91,7 +91,8 @@
                                         <%= allergy_reaction.reaction %> -
                                         <%= allergy_reaction.severity %> <br> 
                                     <% end %>
-                                    <%= button_to 'Add Reaction', new_allergy_reaction_path(allergy_record.id), method: :get %>
+                                    
+                                    <%= link_to 'Add Reaction', "/user/#{@user_id}/allergy_reactions/new?allergy_record_id=#{allergy_record.id}", method: :get %>
                                 </td>
                             </tr>
                             <% end %>

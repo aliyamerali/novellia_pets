@@ -9,5 +9,6 @@ FactoryBot.define do
     owner_first { Faker::Name.name }
     owner_last { Faker::Name.name }
     date_of_birth { Faker::Date.in_date_period }
+    created_by { 'system' }
   end
 end

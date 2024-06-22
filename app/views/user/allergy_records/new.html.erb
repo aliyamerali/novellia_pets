@@ -1,4 +1,4 @@
-<%= form_for @allergy_record do |form| %>
+<%= form_for [:user, @allergy_record] do |form| %>
     <% if @allergy_record&.errors&.any? %>
         <div id="error_explanation"  style="color: red;">
             <h4><%= pluralize(@allergy_record.errors.count, "error") %> prohibited this allergy record from being saved:</h4>

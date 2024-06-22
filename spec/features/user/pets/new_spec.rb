@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'New pet page' do
   before :each do
-    visit 'pets/new'
+    visit 'user/system/pets/new'
   end
 
   it 'has a form to create a new pet' do
@@ -24,7 +24,7 @@ RSpec.describe 'New pet page' do
     fill_in 'Pet Name', with: 'Fido'
     click_button('Add Pet')
 
-    expect(page).to have_current_path('/pets')
+    expect(page).to have_current_path('/user/system/pets')
     expect(page).to have_content("2 errors prohibited this pet from being saved:\nOwner first can't be blank Owner last can't be blank")
   end
 
@@ -34,7 +34,7 @@ RSpec.describe 'New pet page' do
     fill_in 'Owner Last Name', with: 'Ellington'
     click_button('Add Pet')
 
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/user/system/pets')
     expect(page).to have_content('Rolf')
     expect(page).to have_content('Duke Ellington')
     expect(page).to have_content('No vaccine records found for this pet.')

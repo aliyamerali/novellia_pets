@@ -5,7 +5,7 @@
 </style>
 
 <div class="right-align">
-  <%= button_to 'All Pets', '/', method: :get %>
+  <%= button_to 'All Pets', "/user/#{@user_id}/pets", method: :get %>
 </div>
 
 <h1><%=  @allergy_record.name %> Allergy Record for <%= @pet.name %></h1>
@@ -19,7 +19,7 @@
     </ul>
 <% end %>
 
-<%= form_for @allergy_reaction do |form| %>
+<%= form_for [:user, @allergy_reaction] do |form| %>
     <% if @allergy_reaction&.errors&.any? %>
         <div id="error_explanation"  style="color: red;">
             <h4><%= pluralize(@allergy_reaction.errors.count, "error") %> prohibited this allergy record from being saved:</h4>

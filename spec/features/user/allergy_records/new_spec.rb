@@ -6,7 +6,7 @@ RSpec.describe 'New allergy_record page' do
   before :each do
     @pet = FactoryBot.create(:pet)
 
-    visit "allergy_records/new.#{@pet.id}"
+    visit "user/system/allergy_records/new?pet_id=#{@pet.id}"
   end
 
   it 'has a form to create a new allergy_record' do
@@ -20,7 +20,7 @@ RSpec.describe 'New allergy_record page' do
     fill_in 'Allergy Name', with: ''
     click_button('Add Allergy Record')
 
-    expect(page).to have_current_path('/allergy_records')
+    expect(page).to have_current_path('/user/system/allergy_records')
     expect(page).to have_content("1 error prohibited this allergy record from being saved:\nName can't be blank")
   end
 

@@ -6,7 +6,7 @@ RSpec.describe 'New vaccine_record page' do
   before :each do
     @pet = FactoryBot.create(:pet)
 
-    visit "vaccine_records/new.#{@pet.id}"
+    visit "user/system/vaccine_records/new?pet_id=#{@pet.id}"
   end
 
   it 'has a form to create a new vaccine_record' do
@@ -23,7 +23,7 @@ RSpec.describe 'New vaccine_record page' do
     fill_in 'Vaccine Name', with: ''
     click_button('Add Vaccine Record')
 
-    expect(page).to have_current_path('/vaccine_records')
+    expect(page).to have_current_path('/user/system/vaccine_records')
     expect(page).to have_content("1 error prohibited this vaccine record from being saved:\nName can't be blank")
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'New vaccine_record page' do
     fill_in 'Vaccine Name', with: 'Rabies'
     click_button('Add Vaccine Record')
 
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/user/system/pets')
     within("#pet-id-#{@pet.id}") do
       expect(page).to have_content('Rabies')
       expect(page).to_not have_content('No vaccine records found for this pet.')

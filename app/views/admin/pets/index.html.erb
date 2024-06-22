@@ -1,0 +1,95 @@
+<h1> Novellia for Pets </h1>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+
+<style>
+  .right-align {
+    text-align: right;
+  }
+</style>
+
+<br>
+<table id="pets-list" >
+    <thead>
+        <tr>
+        <th>Pet Name</th>
+        <th>Species</th>
+        <th>Owner Name</th>
+        <th>DOB</th>
+        <th>Medical Records</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @pets.each do |pet| %>
+        <tr id="pet-id-<%=pet.id%>">
+            <td><%= pet.name %></td>
+            <td><%= pet.species %></td>
+            <td><%= pet.owner_first %> <%= pet.owner_last %></td>
+            <td><%= pet.date_of_birth %></td>
+            <td> 
+                <strong>Vaccines:</strong> <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vaccine Name</th>
+                            <th>Date Administered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if pet.vaccine_records.empty? %>
+                            <tr>
+                                <td colspan="2">No vaccine records found for this pet.</td>
+                            </tr>
+                        <% else %>
+                            <% pet.vaccine_records.each do |vaccine_record|  %>
+                            <tr>
+                                <td><%= vaccine_record.name %></td>
+                                <td><%= vaccine_record.date_administered %></td>
+                            </tr>
+                            <% end %>
+                        <% end %>
+                </table>
+                <br>
+                <br> <strong>Allergies:</strong> <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Allergen</th>
+                            <th>Reactions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if pet.allergy_records.empty? %>
+                            <tr>
+                                <td colspan="2">No allergy records found for this pet.</td>
+                            </tr>
+                        <% else %>
+                            <% pet.allergy_records.each do |allergy_record|  %>
+                            <tr>
+                                <td><%= allergy_record.name %></td>
+                                <td>
+                                    <% allergy_record.allergy_reactions.each do |allergy_reaction|  %>
+                                        <%= allergy_reaction.reaction %> -
+                                        <%= allergy_reaction.severity %> <br> 
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
