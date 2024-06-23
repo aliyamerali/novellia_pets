@@ -30,7 +30,7 @@ If you don't already have these tools installed, here's a quick how-to with help
 **Run the app locally** 
 - Clone this repo to your local machine: `$ git clone git@github.com:aliyamerali/novellia_pets.git`
 - Run `$ bundle install` to install gems
-- Run `$ rails db:{create,migrate,seed}` to setup the database and run migrations
+- Run `$ rails db:{create,migrate,seed}` to setup the database, run migrations, and seed some base data
 - Run `$ rails s` and navigate to [http://localhost:3000](http://localhost:3000). There are two different experiences: 
     - _Admin_: [http://localhost:3000/admin/pets](http://localhost:3000/admin/pets)
     - _User_: [http://localhost:3000/user/pick-an-id/pets](http://localhost:3000/user/pick-an-id/pets)
@@ -57,9 +57,7 @@ If you don't already have these tools installed, here's a quick how-to with help
     * If we took on real users, I'd want to gain clarity on which attributes should maintain uniqueness, and enforce this with a database-level constraint.
 * To enable two different user "types" (Admin vs User), I created two namespaced API routes.
     * With more time, I'd also consider creating a User model / database resource to enable a more structured experience and normalize across tables (e.g. is a user always an owner? An owner always a user?)
-    * In a production release, I'd want to build in auth that would allow a more dynamic FE view based on user roles/permissions.
- 
-    * 
+    * In a production release, I'd want to build in auth that would allow a more dynamic FE view based on user roles/permissions. 
 <img width="1337" alt="admin_index" src="https://github.com/aliyamerali/novellia_pets/assets/5446926/ff4fc266-ced5-431d-9d4d-1887ed01710c">
 <img width="1329" alt="user_index" src="https://github.com/aliyamerali/novellia_pets/assets/5446926/fe0b7267-fd76-414d-baaf-e5c1c84503a5">
 
