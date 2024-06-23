@@ -43,6 +43,8 @@ If you don't already have these tools installed, here's a quick how-to with help
 
 ### Design decisions + notes for production
 
+![db_schema](https://github.com/aliyamerali/novellia_pets/assets/5446926/6a273afa-4b17-4d68-91b9-5fba5e00c460)
+
 * In setting up the DB schema, I considered using single-table-inheritance to store all medical records, but decided against it given the varying fields on the different medical records and the unknowns of future types of medical records. Instead, I went with multiple tables (one per type of medical record) and a shared abstract parent class that will allow all medical records to share key behaviors.
     * If we were to release a production version of the app, I'd consider other pathways to clean this up and enable easier querying across all medical records - exploring the `ActiveRecord::DelegatedType` module to see if this is a good fit.
 * I made `allergy_reactions` a separate table with a many:one relationship to `allergy_records` with the thinking that one allergen may cause multiple reactions with varying severity. This leads to a slightly wonky user experience (due to my limited experience with ERB) in which a user enters the allergy and reactions in separate forms.
